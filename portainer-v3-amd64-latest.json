@@ -1,0 +1,2863 @@
+{
+	"version": "2",
+	"templates": [
+		{
+			"categories": [
+				"Cloud",
+				"Productivity",
+				"Storage"
+			],
+			"description": "Seafile is an open source file sync and share solution designed for high reliability, performance and productivity. Collections of files are called libraries. Each library can be synced separately.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID",
+					"description": "User ID for file permissions"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID",
+					"description": "Group ID for file permissions"
+				},
+				{
+					"default": "America/New_York",
+					"label": "TZ",
+					"name": "TZ",
+					"description": "Timezone"
+				},
+				{
+					"default": "8000",
+					"label": "SEAFILE_PORT",
+					"name": "SEAFILE_PORT",
+					"description": "Custom port for Seafile web interface"
+				},
+				{
+					"default": "seafile.example.com",
+					"label": "SEAFILE_SERVER_HOSTNAME",
+					"name": "SEAFILE_SERVER_HOSTNAME",
+					"description": "Hostname for Seafile server"
+				},
+				{
+					"default": "admin@seafile.local",
+					"label": "SEAFILE_ADMIN_EMAIL",
+					"name": "SEAFILE_ADMIN_EMAIL",
+					"description": "Admin email address"
+				},
+				{
+					"default": "changeme123",
+					"label": "SEAFILE_ADMIN_PASSWORD",
+					"name": "SEAFILE_ADMIN_PASSWORD",
+					"description": "Admin password (min 8 characters)"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/Seafile",
+					"label": "CONFIG_PATH",
+					"name": "CONFIG_PATH",
+					"description": "Custom path for Seafile configuration"
+				},
+				{
+					"default": "/portainer/Files/Seafile/Data",
+					"label": "DATA_PATH",
+					"name": "DATA_PATH",
+					"description": "Custom path for Seafile data storage"
+				}
+			],
+			"image": "seafileltd/seafile-mc:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/seafile.png",
+			"name": "seafile",
+			"platform": "linux",
+			"ports": [
+				"${SEAFILE_PORT}:80/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Seafile",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${CONFIG_PATH}",
+					"container": "/shared"
+				},
+				{
+					"bind": "${DATA_PATH}",
+					"container": "/data"
+				}
+			],
+			"note": "<h3>Seafile File Sync and Share</h3><b>Default login:</b> Use the admin email and password you configured.<br><br><b>Important:</b> Change the default admin password after first login. The server will be accessible at http://your-ip:${SEAFILE_PORT}<br><br><b>Official Documentation: </b><a href=\"https://manual.seafile.com/docker/deploy_seafile_with_docker/\" target=\"_blank\">Seafile Docker Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Cloud",
+				"Productivity",
+				"Storage"
+			],
+			"description": "OwnCloud Community Edition - A self-hosted file sync and share server with a web interface for accessing files from anywhere.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID",
+					"description": "User ID for file permissions"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID",
+					"description": "Group ID for file permissions"
+				},
+				{
+					"default": "8080",
+					"label": "OWNCLOUD_PORT",
+					"name": "OWNCLOUD_PORT",
+					"description": "Custom port for OwnCloud web interface"
+				},
+				{
+					"default": "owncloud.local",
+					"label": "OWNCLOUD_DOMAIN",
+					"name": "OWNCLOUD_DOMAIN",
+					"description": "Domain name for OwnCloud"
+				},
+				{
+					"default": "admin",
+					"label": "OWNCLOUD_ADMIN_USERNAME",
+					"name": "OWNCLOUD_ADMIN_USERNAME",
+					"description": "Admin username"
+				},
+				{
+					"default": "changeme123",
+					"label": "OWNCLOUD_ADMIN_PASSWORD",
+					"name": "OWNCLOUD_ADMIN_PASSWORD",
+					"description": "Admin password"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/OwnCloud",
+					"label": "CONFIG_PATH",
+					"name": "CONFIG_PATH",
+					"description": "Custom path for OwnCloud configuration"
+				},
+				{
+					"default": "/portainer/Files/OwnCloud/Data",
+					"label": "DATA_PATH",
+					"name": "DATA_PATH",
+					"description": "Custom path for OwnCloud data storage"
+				},
+				{
+					"default": "sqlite",
+					"label": "OWNCLOUD_DB_TYPE",
+					"name": "OWNCLOUD_DB_TYPE",
+					"description": "Database type (sqlite, mysql, pgsql)"
+				}
+			],
+			"image": "owncloud/server:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/owncloud.png",
+			"name": "owncloud-community",
+			"platform": "linux",
+			"ports": [
+				"${OWNCLOUD_PORT}:8080/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "OwnCloud Community",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${CONFIG_PATH}",
+					"container": "/mnt/data"
+				},
+				{
+					"bind": "${DATA_PATH}",
+					"container": "/var/www/owncloud/data"
+				}
+			],
+			"note": "<h3>OwnCloud Community Edition</h3><b>Default login:</b> Use the admin username and password you configured.<br><br><b>Setup:</b> Access the web interface at http://your-ip:${OWNCLOUD_PORT} and complete the installation wizard.<br><br><b>Official Documentation: </b><a href=\"https://doc.owncloud.com/server/admin_manual/installation/docker/\" target=\"_blank\">OwnCloud Docker Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Cloud",
+				"Productivity",
+				"Storage"
+			],
+			"description": "OwnCloud Infinite Scale (OCIS) - Next generation OwnCloud with microservices architecture and improved performance.",
+			"env": [
+				{
+					"default": "9200",
+					"label": "OCIS_PORT",
+					"name": "OCIS_PORT",
+					"description": "Custom port for OCIS web interface"
+				},
+				{
+					"default": "https://ocis.local:9200",
+					"label": "OCIS_URL",
+					"name": "OCIS_URL",
+					"description": "Public URL for OCIS (include protocol and port)"
+				},
+				{
+					"default": "admin",
+					"label": "OCIS_ADMIN_USER",
+					"name": "OCIS_ADMIN_USER",
+					"description": "Admin username"
+				},
+				{
+					"default": "changeme123",
+					"label": "OCIS_ADMIN_PASSWORD",
+					"name": "OCIS_ADMIN_PASSWORD",
+					"description": "Admin password"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/OCIS",
+					"label": "CONFIG_PATH",
+					"name": "CONFIG_PATH",
+					"description": "Custom path for OCIS configuration"
+				},
+				{
+					"default": "/portainer/Files/OCIS/Data",
+					"label": "DATA_PATH",
+					"name": "DATA_PATH",
+					"description": "Custom path for OCIS data storage"
+				},
+				{
+					"default": "false",
+					"label": "OCIS_INSECURE",
+					"name": "OCIS_INSECURE",
+					"description": "Allow insecure connections (true/false)"
+				}
+			],
+			"image": "owncloud/ocis:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/ocis.png",
+			"name": "owncloud-ocis",
+			"platform": "linux",
+			"ports": [
+				"${OCIS_PORT}:9200/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "OwnCloud OCIS",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${CONFIG_PATH}",
+					"container": "/etc/ocis"
+				},
+				{
+					"bind": "${DATA_PATH}",
+					"container": "/var/lib/ocis"
+				}
+			],
+			"command": "ocis server",
+			"note": "<h3>OwnCloud Infinite Scale (OCIS)</h3><b>Default login:</b> Use the admin username and password you configured.<br><br><b>Access:</b> Navigate to the configured OCIS_URL to access the web interface.<br><br><b>Note:</b> OCIS is the next-generation OwnCloud with microservices architecture. For production use, configure proper SSL certificates.<br><br><b>Official Documentation: </b><a href=\"https://owncloud.dev/ocis/\" target=\"_blank\">OCIS Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Video",
+				"Music",
+				"Photos",
+				"Media"
+			],
+			"description": "Enhanced Plex Media Server - Stream your media collection with customizable ports and storage paths.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID",
+					"description": "User ID for file permissions"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID",
+					"description": "Group ID for file permissions"
+				},
+				{
+					"default": "America/New_York",
+					"label": "TZ",
+					"name": "TZ",
+					"description": "Timezone"
+				},
+				{
+					"default": "latest",
+					"label": "VERSION",
+					"name": "VERSION",
+					"description": "Plex version to use"
+				},
+				{
+					"default": "32400",
+					"label": "PLEX_WEB_PORT",
+					"name": "PLEX_WEB_PORT",
+					"description": "Custom port for Plex web interface"
+				},
+				{
+					"default": "claim-xxxxxxxxxxxxxxxxxxxx",
+					"label": "PLEX_CLAIM",
+					"name": "PLEX_CLAIM",
+					"description": "Plex claim token (get from https://plex.tv/claim)"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/Plex",
+					"label": "CONFIG_PATH",
+					"name": "CONFIG_PATH",
+					"description": "Custom path for Plex configuration"
+				},
+				{
+					"default": "/portainer/Media/TV",
+					"label": "TV_PATH",
+					"name": "TV_PATH",
+					"description": "Custom path for TV shows"
+				},
+				{
+					"default": "/portainer/Media/Movies",
+					"label": "MOVIES_PATH",
+					"name": "MOVIES_PATH",
+					"description": "Custom path for movies"
+				},
+				{
+					"default": "/portainer/Media/Music",
+					"label": "MUSIC_PATH",
+					"name": "MUSIC_PATH",
+					"description": "Custom path for music"
+				},
+				{
+					"default": "/portainer/Media/Photos",
+					"label": "PHOTOS_PATH",
+					"name": "PHOTOS_PATH",
+					"description": "Custom path for photos"
+				}
+			],
+			"image": "linuxserver/plex:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/plex-icon.png",
+			"name": "plex-enhanced",
+			"platform": "linux",
+			"ports": [
+				"${PLEX_WEB_PORT}:32400/tcp",
+				"3005:3005/tcp",
+				"8324:8324/tcp",
+				"32469:32469/tcp",
+				"1900:1900/udp",
+				"32410:32410/udp",
+				"32412:32412/udp",
+				"32413:32413/udp",
+				"32414:32414/udp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Plex Media Server (Enhanced)",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${CONFIG_PATH}",
+					"container": "/config"
+				},
+				{
+					"bind": "${TV_PATH}",
+					"container": "/tv"
+				},
+				{
+					"bind": "${MOVIES_PATH}",
+					"container": "/movies"
+				},
+				{
+					"bind": "${MUSIC_PATH}",
+					"container": "/music"
+				},
+				{
+					"bind": "${PHOTOS_PATH}",
+					"container": "/photos"
+				}
+			],
+			"note": "<h3>Plex Media Server (Enhanced)</h3><b>Setup:</b> Get your claim token from <a href=\"https://plex.tv/claim\" target=\"_blank\">https://plex.tv/claim</a> and enter it in the PLEX_CLAIM field.<br><br><b>Access:</b> Navigate to http://your-ip:${PLEX_WEB_PORT}/web to access Plex.<br><br><b>Media Paths:</b> Configure your media paths using the custom path variables for organized storage.<br><br><b>Official Documentation: </b><a href=\"https://docs.linuxserver.io/images/docker-plex\" target=\"_blank\">LinuxServer Plex Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Other",
+				"Tools",
+				"File Management"
+			],
+			"description": "Krusader - Advanced twin-panel file manager for power users with extensive customization options.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID",
+					"description": "User ID for file permissions"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID",
+					"description": "Group ID for file permissions"
+				},
+				{
+					"default": "America/New_York",
+					"label": "TZ",
+					"name": "TZ",
+					"description": "Timezone"
+				},
+				{
+					"default": "6080",
+					"label": "WEB_PORT",
+					"name": "WEB_PORT",
+					"description": "Custom port for web interface"
+				},
+				{
+					"default": "/portainer/Files",
+					"label": "FILES_PATH",
+					"name": "FILES_PATH",
+					"description": "Custom path for file access"
+				}
+			],
+			"image": "linuxserver/krusader:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/krusader.png",
+			"name": "krusader",
+			"platform": "linux",
+			"ports": [
+				"${WEB_PORT}:3000/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Krusader File Manager",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Files/AppData/Config/Krusader",
+					"container": "/config"
+				},
+				{
+					"bind": "${FILES_PATH}",
+					"container": "/data"
+				}
+			],
+			"note": "<h3>Krusader Twin-Panel File Manager</h3><b>Access:</b> Navigate to http://your-ip:${WEB_PORT} to access the web interface.<br><br><b>Features:</b> Advanced file operations, built-in viewer/editor, archive handling, and extensive customization.<br><br><b>Official Documentation: </b><a href=\"https://docs.linuxserver.io/images/docker-krusader\" target=\"_blank\">LinuxServer Krusader Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Development",
+				"Tools",
+				"Database"
+			],
+			"description": "Adminer - Full-featured database management tool with support for MySQL, PostgreSQL, SQLite, MS SQL, Oracle, and MongoDB.",
+			"env": [
+				{
+					"default": "8080",
+					"label": "ADMINER_PORT",
+					"name": "ADMINER_PORT",
+					"description": "Custom port for Adminer web interface"
+				},
+				{
+					"default": "adminer:4-standalone",
+					"label": "ADMINER_VERSION",
+					"name": "ADMINER_VERSION",
+					"description": "Adminer version/variant to use"
+				}
+			],
+			"image": "${ADMINER_VERSION}",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/adminer.png",
+			"name": "adminer",
+			"platform": "linux",
+			"ports": [
+				"${ADMINER_PORT}:8080/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Adminer Database Manager",
+			"type": 1,
+			"note": "<h3>Adminer Database Management Tool</h3><b>Access:</b> Navigate to http://your-ip:${ADMINER_PORT} to access Adminer.<br><br><b>Supported:</b> MySQL, PostgreSQL, SQLite, MS SQL, Oracle, MongoDB and more.<br><br><b>Usage:</b> Enter your database connection details on the login screen.<br><br><b>Official Documentation: </b><a href=\"https://www.adminer.org/\" target=\"_blank\">Adminer Official Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Backup",
+				"Tools",
+				"Storage"
+			],
+			"description": "Restic Server - Fast, secure, efficient backup program with REST server backend for multiple clients.",
+			"env": [
+				{
+					"default": "8000",
+					"label": "RESTIC_PORT",
+					"name": "RESTIC_PORT",
+					"description": "Custom port for Restic REST server"
+				},
+				{
+					"default": "/portainer/Files/Backups/Restic",
+					"label": "BACKUP_PATH",
+					"name": "BACKUP_PATH",
+					"description": "Custom path for backup storage"
+				},
+				{
+					"default": "changeme",
+					"label": "RESTIC_PASSWORD",
+					"name": "RESTIC_PASSWORD",
+					"description": "Password for Restic server access"
+				},
+				{
+					"default": "false",
+					"label": "DISABLE_AUTHENTICATION",
+					"name": "DISABLE_AUTHENTICATION",
+					"description": "Disable authentication (not recommended for production)"
+				}
+			],
+			"image": "restic/rest-server:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/restic.png",
+			"name": "restic-server",
+			"platform": "linux",
+			"ports": [
+				"${RESTIC_PORT}:8000/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Restic Backup Server",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${BACKUP_PATH}",
+					"container": "/data"
+				}
+			],
+			"command": "--listen :8000 --path /data",
+			"note": "<h3>Restic REST Server</h3><b>Access:</b> Connect Restic clients to http://your-ip:${RESTIC_PORT}<br><br><b>Setup:</b> Configure Restic clients to use this server as backup destination.<br><br><b>Security:</b> Consider enabling authentication and using HTTPS in production.<br><br><b>Official Documentation: </b><a href=\"https://restic.readthedocs.io/\" target=\"_blank\">Restic Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Monitoring",
+				"System",
+				"Tools"
+			],
+			"description": "Glances - Cross-platform system monitoring tool with web interface for real-time system statistics.",
+			"env": [
+				{
+					"default": "61208",
+					"label": "GLANCES_PORT",
+					"name": "GLANCES_PORT",
+					"description": "Custom port for Glances web interface"
+				}
+			],
+			"image": "nicolargo/glances:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/glances.png",
+			"name": "glances",
+			"platform": "linux",
+			"ports": [
+				"${GLANCES_PORT}:61208/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Glances System Monitor",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/var/run/docker.sock",
+					"container": "/var/run/docker.sock",
+					"readonly": true
+				},
+				{
+					"bind": "/proc",
+					"container": "/host/proc",
+					"readonly": true
+				},
+				{
+					"bind": "/sys",
+					"container": "/host/sys",
+					"readonly": true
+				}
+			],
+			"privileged": true,
+			"command": "-w",
+			"note": "<h3>Glances System Monitoring</h3><b>Access:</b> Navigate to http://your-ip:${GLANCES_PORT} to view system statistics.<br><br><b>Features:</b> CPU, memory, disk, network monitoring with Docker container support.<br><br><b>Official Documentation: </b><a href=\"https://glances.readthedocs.io/\" target=\"_blank\">Glances Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Development",
+				"Tools",
+				"Git"
+			],
+			"description": "Gitea - Lightweight self-hosted Git service with web interface, issue tracking, and collaboration features.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "USER_UID",
+					"name": "USER_UID",
+					"description": "User ID for Gitea"
+				},
+				{
+					"default": "1000",
+					"label": "USER_GID",
+					"name": "USER_GID",
+					"description": "Group ID for Gitea"
+				},
+				{
+					"default": "3000",
+					"label": "GITEA_WEB_PORT",
+					"name": "GITEA_WEB_PORT",
+					"description": "Custom port for Gitea web interface"
+				},
+				{
+					"default": "222",
+					"label": "GITEA_SSH_PORT",
+					"name": "GITEA_SSH_PORT",
+					"description": "Custom port for Gitea SSH access"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/Gitea",
+					"label": "CONFIG_PATH",
+					"name": "CONFIG_PATH",
+					"description": "Custom path for Gitea configuration and data"
+				},
+				{
+					"default": "gitea.local",
+					"label": "GITEA__server__DOMAIN",
+					"name": "GITEA__server__DOMAIN",
+					"description": "Domain name for Gitea"
+				},
+				{
+					"default": "Gitea Server",
+					"label": "GITEA__server__ROOT_URL",
+					"name": "GITEA__server__ROOT_URL",
+					"description": "Root URL for Gitea (http://domain:port)"
+				}
+			],
+			"image": "gitea/gitea:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/gitea.png",
+			"name": "gitea",
+			"platform": "linux",
+			"ports": [
+				"${GITEA_WEB_PORT}:3000/tcp",
+				"${GITEA_SSH_PORT}:22/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Gitea Git Service",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${CONFIG_PATH}",
+					"container": "/data"
+				},
+				{
+					"bind": "/etc/timezone",
+					"container": "/etc/timezone",
+					"readonly": true
+				},
+				{
+					"bind": "/etc/localtime",
+					"container": "/etc/localtime",
+					"readonly": true
+				}
+			],
+			"note": "<h3>Gitea Git Service</h3><b>Access:</b> Navigate to http://your-ip:${GITEA_WEB_PORT} to access Gitea.<br><br><b>Setup:</b> Complete the initial setup wizard on first access.<br><br><b>SSH:</b> Git operations available via SSH on port ${GITEA_SSH_PORT}.<br><br><b>Official Documentation: </b><a href=\"https://docs.gitea.io/\" target=\"_blank\">Gitea Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Communication",
+				"Chat",
+				"Collaboration"
+			],
+			"description": "Element Web - Modern Matrix client for secure, decentralized communication with end-to-end encryption.",
+			"env": [
+				{
+					"default": "8080",
+					"label": "ELEMENT_PORT",
+					"name": "ELEMENT_PORT",
+					"description": "Custom port for Element web interface"
+				},
+				{
+					"default": "https://matrix.org",
+					"label": "DEFAULT_SERVER_NAME",
+					"name": "DEFAULT_SERVER_NAME",
+					"description": "Default Matrix homeserver"
+				},
+				{
+					"default": "https://matrix-client.matrix.org",
+					"label": "DEFAULT_SERVER_URL",
+					"name": "DEFAULT_SERVER_URL",
+					"description": "Default Matrix homeserver URL"
+				}
+			],
+			"image": "vectorim/element-web:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/element.png",
+			"name": "element-web",
+			"platform": "linux",
+			"ports": [
+				"${ELEMENT_PORT}:80/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Element Web (Matrix Client)",
+			"type": 1,
+			"note": "<h3>Element Web Matrix Client</h3><b>Access:</b> Navigate to http://your-ip:${ELEMENT_PORT} to access Element.<br><br><b>Usage:</b> Create an account on a Matrix homeserver or connect to your own Synapse server.<br><br><b>Features:</b> End-to-end encryption, file sharing, voice/video calls, and room management.<br><br><b>Official Documentation: </b><a href=\"https://element.io/help\" target=\"_blank\">Element Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Password Manager",
+				"Security",
+				"Tools"
+			],
+			"description": "Vaultwarden (Bitwarden) - Lightweight, self-hosted password manager compatible with Bitwarden clients.",
+			"env": [
+				{
+					"default": "8080",
+					"label": "VAULT_PORT",
+					"name": "VAULT_PORT",
+					"description": "Custom port for Vaultwarden web interface"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/Vaultwarden",
+					"label": "DATA_PATH",
+					"name": "DATA_PATH",
+					"description": "Custom path for Vaultwarden data"
+				},
+				{
+					"default": "true",
+					"label": "SIGNUPS_ALLOWED",
+					"name": "SIGNUPS_ALLOWED",
+					"description": "Allow new user registrations"
+				},
+				{
+					"default": "",
+					"label": "ADMIN_TOKEN",
+					"name": "ADMIN_TOKEN",
+					"description": "Admin panel access token (leave empty to disable)"
+				},
+				{
+					"default": "smtp.gmail.com",
+					"label": "SMTP_HOST",
+					"name": "SMTP_HOST",
+					"description": "SMTP server for email notifications"
+				},
+				{
+					"default": "587",
+					"label": "SMTP_PORT",
+					"name": "SMTP_PORT",
+					"description": "SMTP server port"
+				},
+				{
+					"default": "",
+					"label": "SMTP_USERNAME",
+					"name": "SMTP_USERNAME",
+					"description": "SMTP username (optional)"
+				},
+				{
+					"default": "",
+					"label": "SMTP_PASSWORD",
+					"name": "SMTP_PASSWORD",
+					"description": "SMTP password (optional)"
+				}
+			],
+			"image": "vaultwarden/server:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/bitwarden.png",
+			"name": "vaultwarden-enhanced",
+			"platform": "linux",
+			"ports": [
+				"${VAULT_PORT}:80/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Vaultwarden (Enhanced)",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${DATA_PATH}",
+					"container": "/data"
+				}
+			],
+			"note": "<h3>Vaultwarden Password Manager</h3><b>Access:</b> Navigate to http://your-ip:${VAULT_PORT} to access Vaultwarden.<br><br><b>Setup:</b> Create your account and install Bitwarden clients on your devices.<br><br><b>Admin:</b> Access admin panel at /admin if ADMIN_TOKEN is configured.<br><br><b>Official Documentation: </b><a href=\"https://github.com/dani-garcia/vaultwarden/wiki\" target=\"_blank\">Vaultwarden Wiki</a><br><br>"
+		},
+		{
+			"categories": [
+				"Other",
+				"Tools"
+			],
+			"description": "[Adguardhome](https://adguard.com/en/adguard-home/overview.html) AdGuard Home is a network-wide software for blocking ads & tracking.",
+			"image": "adguard/adguardhome:latest",
+			"logo": "https://developer.asustor.com/uploadIcons/0020_999_1595573028_AdGuardhome_256.png",
+			"name": "Adguardhome",
+			"platform": "linux",
+			"ports": [
+				"53:53/tcp",
+				"53:53/udp",
+				"67:67/udp",
+				"68:68/udp",
+				"80:80/tcp",
+				"443:443/tcp",
+				"443:443/udp",
+				"3000:3000/tcp",
+				"853:853/tcp",
+				"784:784/udp",
+				"853:853/udp",
+				"8853:8853/udp",
+				"5443:5443/tcp",
+				"5443:5443/udp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Adguardhome",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Files/AppData/Config/AdguardHome/config",
+					"container": "/opt/adguardhome/conf"
+				},
+				{
+					"bind": "/portainer/Files/AppData/Config/AdguardHome/work",
+					"container": "/opt/adguardhome/work"
+				}
+			],
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://adguard.com/en/adguard-home/overview.html\" target=\"_blank\">https://adguard.com/en/adguard-home/overview.html</a><br><b>Official Docker Documentation: </b><a href=\"https://github.com/AdguardTeam/AdGuardHome/wiki/Docker\" target=\"_blank\">https://github.com/AdguardTeam/AdGuardHome/wiki/Docker</a><br><br><br>"
+		},
+		{
+			"categories": [
+				"Other",
+				"Tools"
+			],
+			"env": [
+				{
+					"name": "PUID",
+					"label": "PUID",
+					"default": "1000",
+					"description": "for UserID"
+				},
+				{
+					"name": "PGID",
+					"label": "PGID",
+					"default": "1000",
+					"description": "for GroupID"
+				},
+				{
+					"name": "TZ",
+					"label": "TZ",
+					"default": "America/New_York",
+					"description": "Specify a timezone to use for example America/New_York"
+				},
+				{
+					"name": "CONFIGFILE",
+					"label": "CONFIGFILE",
+					"default": "/config/adguardhome-sync.yaml",
+					"description": "Set a custom config file."
+				}
+			],
+			"description": "[Adguardhome-sync](https://github.com/bakito/adguardhome-sync/) is a tool to synchronize AdGuardHome config to replica instances.",
+			"image": "linuxserver/adguardhome-sync:latest",
+			"logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/adguardhomesync-icon.png",
+			"name": "Adguardhome-sync",
+			"platform": "linux",
+			"ports": [
+				"8080:8080/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Adguardhome-sync",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Files/AppData/Config/adguardhome-sync/config",
+					"container": "/config"
+				}
+			],
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://adguard.com/en/adguard-home/overview.html\" target=\"_blank\">https://adguard.com/en/adguard-home/overview.html</a><br><b>Official Docker Documentation: </b><a href=\"https://github.com/linuxserver/docker-adguardhome-sync#usage\" target=\"_blank\">https://github.com/linuxserver/docker-adguardhome-sync#usage</a><br><br><br>"
+		},
+		{
+			"categories": [
+				"Music"
+			],
+			"description": "[DEPRECATED] Airsonic is a free, web-based media streamer, providing ubiqutious access to your music. Use it to share your music with friends, or to listen to your own music while at work. You can stream to multiple players simultaneously, for instance to one player in your kitchen and another in your living room.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID"
+				},
+				{
+					"default": "America/New_York",
+					"label": "TZ",
+					"name": "TZ"
+				},
+				{
+					"default": "airsonic",
+					"label": "CONTEXT_PATH",
+					"name": "CONTEXT_PATH"
+				},
+				{
+					"default": "-Xms256m -Xmx512m",
+					"label": "JAVA_OPTS",
+					"name": "JAVA_OPTS"
+				}
+			],
+			"image": "linuxserver/airsonic:amd64-latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/airsonic-logo.png",
+			"name": "airsonic",
+			"platform": "linux",
+			"ports": [
+				"4040:4040/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Airsonic",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Music",
+					"container": "/music"
+				},
+				{
+					"bind": "/portainer/Files/AppData/Config/Airsonic/Playlists",
+					"container": "/playlists"
+				},
+				{
+					"bind": "/portainer/Podcasts",
+					"container": "/podcasts"
+				},
+				{
+					"bind": "/portainer/Files/AppData/Config/Airsonic/Media",
+					"container": "/media"
+				},
+				{
+					"bind": "/portainer/Files/AppData/Config/Airsonic/config/",
+					"container": "/config"
+				}
+			],
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://airsonic.github.io/\" target=\"_blank\">https://airsonic.github.io/</a><br><b>Official Docker Documentation: </b><a href=\"https://airsonic.github.io/docs/install/docker/\" target=\"_blank\">https://airsonic.github.io/docs/install/docker/</a><br><br><br>"
+		},
+		{
+			"categories": [
+				"Other",
+				"Tools",
+				"Games"
+			],
+			"description": "C# application with primary purpose of farming Steam cards from multiple accounts simultaneously.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID"
+				}
+			],
+			"image": "justarchi/archisteamfarm:latest",
+			"logo": "https://raw.githubusercontent.com/JustArchiNET/ArchiSteamFarm/main/resources/ASF_184x184.png",
+			"name": "archisteamfarm",
+			"platform": "linux",
+			"ports": [
+				"1242:1242/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "ArchiSteamFarm",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Files/AppData/ArchiSteamFarm/config",
+					"container": "/app/config"
+				},
+				{
+					"bind": "/portainer/Files/AppData/ArchiSteamFarm/plugins",
+					"container": "/app/plugins"
+				},
+				{
+					"bind": "/portainer/Files/AppData/ArchiSteamFarm/logs",
+					"container": "/app/logs"
+				}
+			],
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://github.com/JustArchiNET/ArchiSteamFarm/\" target=\"_blank\">https://github.com/JustArchiNET/ArchiSteamFarm/</a><br><b>Official Docker Documentation: </b><a href=\"https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Docker/\" target=\"_blank\">https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Docker/</a><br><br><br>"
+		},
+		{
+			"categories": [
+				"Other",
+				"Tools"
+			],
+			"description": "ArchiveBox is a powerful, self-hosted internet archiving solution to collect, save, and view sites you want to preserve offline.",
+			"env": [
+				{
+					"default": "*",
+					"label": "ALLOWED_HOSTS",
+					"name": "ALLOWED_HOSTS"
+				},
+				{
+					"default": "750m",
+					"label": "MEDIA_MAX_SIZE",
+					"name": "MEDIA_MAX_SIZE"
+				},
+				{
+					"default": "true",
+					"label": "PUBLIC_INDEX",
+					"name": "PUBLIC_INDEX"
+				},
+				{
+					"default": "true",
+					"label": "PUBLIC_SNAPSHOTS",
+					"name": "PUBLIC_SNAPSHOTS"
+				},
+				{
+					"default": "false",
+					"label": "PUBLIC_ADD_VIEW",
+					"name": "PUBLIC_ADD_VIEW"
+				}
+			],
+			"image": "archivebox/archivebox:master",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/archivebox.png",
+			"name": "archivebox",
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://archivebox.io/\" target=\"_blank\">https://archivebox.io/</a><br><b>Official Docker Documentation: </b><a href=\"https://github.com/ArchiveBox/ArchiveBox/wiki/Docker\" target=\"_blank\">https://github.com/ArchiveBox/ArchiveBox/wiki/Docker</a><br><br><br>By default an admin user is not created. You can do so by launching a shell in the container and executing 'archivebox manage createsuperuser'. Documentation is Available <a href='https://github.com/ArchiveBox/ArchiveBox/wiki'>here</a>.",
+			"platform": "linux",
+			"ports": [
+				"8002:8000/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Archivebox",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Files/AppData/Config/archivebox",
+					"container": "/data"
+				}
+			]
+		},
+		{
+			"categories": [
+				"Downloader"
+			],
+			"description": "AriaNg is a modern web frontend making aria2 easier to use. AriaNg is written in pure html & javascript, thus it does not need any compilers or runtime environment. You can just put AriaNg in your web server and open it in your browser. AriaNg uses responsive layout, and supports any desktop or mobile devices.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID"
+				},
+				{
+					"default": "443",
+					"label": "ARIA2RPCPORT",
+					"name": "ARIA2RPCPORT"
+				}
+			],
+			"image": "hurlenko/aria2-ariang",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/ariang.png",
+			"name": "AriaNG",
+			"platform": "linux",
+			"ports": [
+				"8080:8080/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "AriaNG",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Files/AppData/Config/AriaNG",
+					"container": "/aria2/conf"
+				},
+				{
+					"bind": "/portainer/Downloads",
+					"container": "/aria2/data"
+				}
+			],
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://github.com/hurlenko/aria2-ariang-docker\" target=\"_blank\">https://github.com/hurlenko/aria2-ariang-docker</a><br><b>Official Docker Documentation: </b><a href=\"https://github.com/hurlenko/aria2-ariang-docker\" target=\"_blank\">https://github.com/hurlenko/aria2-ariang-docker</a><br><br><br>"
+		},
+		{
+			"categories": [
+				"Other",
+				"Tools",
+				"Authentication"
+			],
+			"description": "An open-source authentication and authorization server providing 2-factor authentication and single sign-on (SSO) for your applications via a web portal.",
+			"env": [
+				{
+					"default": "America/New_York",
+					"label": "TZ",
+					"name": "TZ"
+				}
+			],
+			"image": "authelia/authelia:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/authelia.png",
+			"name": "authelia",
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://www.authelia.com/\" target=\"_blank\">https://www.authelia.com/</a><br><b>Official Docker Documentation: </b><a href=\"https://www.authelia.com/docs/configuration/\" target=\"_blank\">https://www.authelia.com/docs/configuration/</a><br><br><br>Requires a configuration.yml file in order to work. Documentation is Available <a href='https://docs.authelia.com/deployment/deployment-ha'>here</a>.",
+			"platform": "linux",
+			"ports": [
+				"9091:9091/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Authelia",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Files/AppData/Config/Authelia",
+					"container": "/etc/authelia/"
+				}
+			]
+		},
+		{
+			"categories": [
+				"Video",
+				"Music"
+			],
+			"description": "Bazarr is a companion application to Sonarr and Radarr. It can manage and download subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID"
+				},
+				{
+					"default": "America/New_York",
+					"label": "TZ",
+					"name": "TZ"
+				}
+			],
+			"image": "linuxserver/bazarr:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/bazarr.png",
+			"name": "bazarr",
+			"platform": "linux",
+			"ports": [
+				"6767:6767/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Bazarr",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Files/AppData/Config/Bazarr",
+					"container": "/config"
+				},
+				{
+					"bind": "/portainer/TV",
+					"container": "/tv"
+				},
+				{
+					"bind": "/portainer/Movies",
+					"container": "/movies"
+				}
+			],
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://www.bazarr.media/\" target=\"_blank\">https://www.bazarr.media/</a><br><b>Official Docker Documentation: </b><a href=\"https://wiki.bazarr.media/Getting-Started/Installation/Docker/docker/\" target=\"_blank\">https://wiki.bazarr.media/Getting-Started/Installation/Docker/docker/</a><br><br><br>"
+		},
+		{
+			"categories": [
+				"Music"
+			],
+			"description": "The purpose of beets is to get your music collection right once and for all. It catalogs your collection, automatically improving its metadata as it goes using the MusicBrainz database. Then it provides a bouquet of tools for manipulating and accessing your music.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID"
+				}
+			],
+			"image": "linuxserver/beets:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/beets-icon.png",
+			"name": "beets",
+			"platform": "linux",
+			"ports": [
+				"8337:8337/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Beets",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Files/AppData/Config/Beets",
+					"container": "/config"
+				},
+				{
+					"bind": "/portainer/Downloads",
+					"container": "/downloads"
+				},
+				{
+					"bind": "/portainer/Music",
+					"container": "/music"
+				}
+			],
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://beets.io/\" target=\"_blank\">https://beets.io/</a><br><b>Official Docker Documentation: </b><a href=\"https://docs.linuxserver.io/images/docker-beets\" target=\"_blank\">https://docs.linuxserver.io/images/docker-beets</a><br><br><br>"
+		},
+		{
+			"categories": [
+				"Books",
+				"Other"
+			],
+			"description": "Booksonic is a server and an app for streaming your audiobooks to any pc or android phone. Most of the functionality is also availiable on other platforms that have apps for subsonic",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID"
+				},
+				{
+					"default": "booksonic",
+					"label": "CONTEXT_PATH",
+					"name": "CONTEXT_PATH"
+				}
+			],
+			"image": "linuxserver/booksonic:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/booksonic.png",
+			"name": "booksonic",
+			"platform": "linux",
+			"ports": [
+				"4041:4040/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Booksonic",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Books",
+					"container": "/books"
+				},
+				{
+					"bind": "/portainer/Files/Podcasts",
+					"container": "/podcast"
+				},
+				{
+					"bind": "/portainer/Files/AppData/Config/Booksonic",
+					"container": "/config"
+				}
+			],
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://booksonic.org/\" target=\"_blank\">https://booksonic.org/</a><br><b>Official Docker Documentation: </b><a href=\"https://docs.linuxserver.io/images/docker-booksonic-air\" target=\"_blank\">https://docs.linuxserver.io/images/docker-booksonic-air</a><br><br><br>"
+		},
+		{
+			"categories": [
+				"Wiki"
+			],
+			"description": "Bookstack is a free and open source Wiki designed for creating beautiful documentation. Feautring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID"
+				},
+				{
+					"default": "America/New_York",
+					"label": "TZ",
+					"name": "TZ"
+				},
+				{
+					"label": "DATABASE_PASSWORD",
+					"name": "DATABASE_PASSWORD"
+				},
+				{
+					"label": "MYSQL_ROOT_PASSWORD",
+					"name": "MYSQL_ROOT_PASSWORD"
+				},
+				{
+					"default": "http://192.168.X.Y:6875",
+					"description": "Address to access Bookstack. If using a domain, add it here. If not set correctly the app will not be accessible",
+					"label": "APP_URL",
+					"name": "APP_URL"
+				},
+				{
+					"default": "6875",
+					"label": "PORT",
+					"name": "PORT"
+				}
+			],
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/bookstack2.png",
+			"name": "bookstack",
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://www.bookstackapp.com/\" target=\"_blank\">https://www.bookstackapp.com/</a><br><b>Official Docker Documentation: </b><a href=\"https://www.bookstackapp.com/docs/admin/installation/#docker\" target=\"_blank\">https://www.bookstackapp.com/docs/admin/installation/#docker</a><br><br><br>Default login is admin@admin.com with a password of password. The database created is called bookstackapp and the database user is called bookstack",
+			"platform": "linux",
+			"repository": {
+				"stackfile": "stack/bookstack.yml",
+				"url": "https://github.com/pi-hosted/pi-hosted"
+			},
+			"title": "Bookstack",
+			"type": 3
+		},
+		{
+			"categories": [
+				"Tools",
+				"Web",
+				"Webserver"
+			],
+			"description": "Caddy - The Ultimate Server with Automatic HTTPS.  Need to run tools/install_caddy.sh before installing the template.",
+			"image": "caddy:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/caddy.png",
+			"name": "caddy",
+			"note": "<h3>Template created by Pi-Hosted Series</h3><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://caddyserver.com/\" target=\"_blank\">https://caddyserver.com/</a><br><b>Official Docker Documentation: </b><a href=\"https://hub.docker.com/_/caddy\" target=\"_blank\">https://hub.docker.com/_/caddy</a><br><br><b>Pre-installation script must be RAN before you install: </b><a href=\"https://github.com/pi-hosted/pi-hosted/blob/master/tools/install_caddy.sh\" target=\"_blank\">install_caddy.sh</a><br><br>Caddy 2 is a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go",
+			"platform": "linux",
+			"ports": [
+				"80:80/tcp",
+				"443:443/tcp",
+				"2019:2019/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Caddy",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Files/AppData/Config/Caddy/Data",
+					"container": "/data"
+				},
+				{
+					"bind": "/portainer/Files/AppData/Config/Caddy/Config",
+					"container": "/config"
+				},
+				{
+					"bind": "/portainer/Files/AppData/Config/Caddy/Caddyfile",
+					"container": "/etc/caddy/Caddyfile"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Registry",
+			"description": "Docker image registry",
+			"categories": ["docker"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/registry.png",
+			"image": "registry:latest",
+			"ports": ["5000/tcp"],
+			"volumes": [
+				{
+					"container": "/var/lib/registry"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Ubuntu",
+			"description": "Debian-based Linux operating system",
+			"categories": ["operating-system"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ubuntu.png",
+			"image": "ubuntu:latest",
+			"interactive": true,
+			"command": "/bin/bash"
+		},
+		{
+			"type": 1,
+			"title": "NodeJS",
+			"description": "JavaScript-based platform for server-side and networking applications",
+			"categories": ["development"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/node.png",
+			"image": "node:latest",
+			"interactive": true,
+			"command": "/bin/bash"
+		},
+		{
+			"type": 1,
+			"title": "Nginx",
+			"description": "High performance web server",
+			"categories": ["webserver"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/nginx.png",
+			"image": "nginx:latest",
+			"ports": ["80/tcp", "443/tcp"],
+			"volumes": [
+				{
+					"container": "/etc/nginx"
+				},
+				{
+					"container": "/usr/share/nginx/html"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Httpd",
+			"description": "Open-source HTTP server",
+			"categories": ["webserver"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/httpd.png",
+			"image": "httpd:latest",
+			"ports": ["80/tcp"],
+			"volumes": [
+				{
+					"container": "/usr/local/apache2/htdocs/"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Caddy",
+			"description": "Open-source web server with automatic HTTPS written in Go",
+			"categories": ["webserver"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/caddy.png",
+			"image": "caddy:latest",
+			"ports": ["80/tcp"],
+			"volumes": [
+				{
+					"container": "/data"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "MySQL",
+			"description": "The most popular open-source database",
+			"categories": ["database"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mysql.png",
+			"image": "mysql/mysql-server:5.7",
+			"env": [
+				{
+					"name": "MYSQL_ROOT_PASSWORD",
+					"label": "Root password"
+				},
+				{
+					"name": "MYSQL_ROOT_HOST",
+					"default": "%",
+					"preset": true
+				}
+			],
+			"ports": ["3306/tcp"],
+			"volumes": [
+				{
+					"container": "/var/lib/mysql"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "MariaDB",
+			"description": "Performance beyond MySQL",
+			"categories": ["database"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mariadb.png",
+			"image": "mariadb:latest",
+			"env": [
+				{
+					"name": "MYSQL_ROOT_PASSWORD",
+					"label": "Root password"
+				}
+			],
+			"ports": ["3306/tcp"],
+			"volumes": [
+				{
+					"container": "/var/lib/mysql"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "PostgreSQL",
+			"description": "The most advanced open-source database",
+			"categories": ["database"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/postgres.png",
+			"image": "postgres:latest",
+			"env": [
+				{
+					"name": "POSTGRES_USER",
+					"label": "Superuser"
+				},
+				{
+					"name": "POSTGRES_PASSWORD",
+					"label": "Superuser password"
+				}
+			],
+			"ports": ["5432/tcp"],
+			"volumes": [
+				{
+					"container": "/var/lib/postgresql/data"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Mongo",
+			"description": "Open-source document-oriented database",
+			"categories": ["database"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mongo.png",
+			"image": "mongo:latest",
+			"ports": ["27017/tcp"],
+			"volumes": [
+				{
+					"container": "/data/db"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "CrateDB",
+			"description": "An open-source distributed SQL database",
+			"categories": ["database"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cratedb.png",
+			"image": "crate:latest",
+			"ports": ["4200/tcp", "4300/tcp"],
+			"volumes": [
+				{
+					"container": "/data"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Elasticsearch",
+			"description": "Open-source search and analytics engine",
+			"categories": ["database"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/elasticsearch.png",
+			"image": "docker.elastic.co/elasticsearch/elasticsearch:7.15.1",
+			"ports": ["9200/tcp", "9300/tcp"],
+			"volumes": [
+				{
+					"container": "/usr/share/elasticsearch/data"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Gitlab CE",
+			"description": "Open-source end-to-end software development platform",
+			"note": "Default username is <b>root</b>. Check the <a href=\"https://docs.gitlab.com/omnibus/docker/README.html#after-starting-a-container\" target=\"_blank\">Gitlab documentation</a> to get started.",
+			"categories": ["development", "project-management"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/gitlab_ce.png",
+			"image": "gitlab/gitlab-ce:latest",
+			"ports": ["80/tcp", "443/tcp", "22/tcp"],
+			"volumes": [
+				{
+					"container": "/etc/gitlab"
+				},
+				{
+					"container": "/var/log/gitlab"
+				},
+				{
+					"container": "/var/opt/gitlab"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Minio",
+			"description": "A distributed object storage server built for cloud applications and devops",
+			"categories": ["storage"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/minio.png",
+			"image": "quay.io/minio/minio:latest",
+			"ports": ["9000/tcp", "9001/tcp"],
+			"env": [
+				{
+					"name": "MINIO_ROOT_USER",
+					"label": "Root user"
+				},
+				{
+					"name": "MINIO_ROOT_PASSWORD",
+					"label": "Root password"
+				}
+			],
+			"volumes": [
+				{
+					"container": "/data"
+				},
+				{
+					"container": "/root/.minio"
+				}
+			],
+			"command": "server /data --console-address ':9001'"
+		},
+		{
+			"type": 1,
+			"title": "Scality S3",
+			"description": "Standalone AWS S3 protocol server",
+			"categories": ["storage"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/scality-s3.png",
+			"image": "scality/s3server",
+			"ports": ["8000/tcp"],
+			"env": [
+				{
+					"name": "SCALITY_ACCESS_KEY",
+					"label": "Scality S3 access key"
+				},
+				{
+					"name": "SCALITY_SECRET_KEY",
+					"label": "Scality S3 secret key"
+				}
+			],
+			"volumes": [
+				{
+					"container": "/usr/src/app/localData"
+				},
+				{
+					"container": "/usr/src/app/localMetadata"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "SQL Server",
+			"description": "Microsoft SQL Server on Linux",
+			"categories": ["database"],
+			"platform": "linux",
+			"note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+			"image": "mcr.microsoft.com/mssql/server:2019-latest",
+			"ports": ["1433/tcp"],
+			"env": [
+				{
+					"name": "ACCEPT_EULA",
+					"default": "Y",
+					"preset": true
+				},
+				{
+					"name": "SA_PASSWORD",
+					"label": "SA password"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "SQL Server",
+			"description": "Microsoft SQL Server Developer for Windows containers",
+			"categories": ["database"],
+			"platform": "windows",
+			"note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+			"image": "microsoft/mssql-server-windows-developer:latest",
+			"ports": ["1433/tcp"],
+			"env": [
+				{
+					"name": "ACCEPT_EULA",
+					"default": "Y",
+					"preset": true
+				},
+				{
+					"name": "sa_password",
+					"label": "SA password"
+				}
+			],
+			"volumes": [
+				{
+					"container": "C:/temp/"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "SQL Server Express",
+			"description": "Microsoft SQL Server Express for Windows containers",
+			"categories": ["database"],
+			"platform": "windows",
+			"note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+			"image": "microsoft/mssql-server-windows-express:latest",
+			"ports": ["1433/tcp"],
+			"env": [
+				{
+					"name": "ACCEPT_EULA",
+					"default": "Y",
+					"preset": true
+				},
+				{
+					"name": "sa_password",
+					"label": "SA password"
+				}
+			],
+			"volumes": [
+				{
+					"container": "C:/temp/"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Solr",
+			"description": "Open-source enterprise search platform",
+			"categories": ["search-engine"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/solr.png",
+			"image": "solr:latest",
+			"ports": ["8983/tcp"],
+			"volumes": [
+				{
+					"container": "/opt/solr/mydata"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Redis",
+			"description": "Open-source in-memory data structure store",
+			"categories": ["database"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redis.png",
+			"image": "redis:latest",
+			"ports": ["6379/tcp"],
+			"volumes": [
+				{
+					"container": "/data"
+				}
+			]
+		},
+		{
+			"type": 2,
+			"title": "Redis Cluster",
+			"description": "Open-source in-memory data structure store - Cluster mode",
+			"categories": ["database"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redis.png",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/redis-cluster/docker-stack.yaml"
+			},
+			"env": [
+				{
+					"name": "REDIS_PASSWD",
+					"label": "Redis password"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "RabbitMQ",
+			"description": "Highly reliable enterprise messaging system",
+			"categories": ["messaging"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/rabbitmq.png",
+			"image": "rabbitmq:latest",
+			"ports": ["5671/tcp", "5672/tcp"],
+			"volumes": [
+				{
+					"container": "/var/lib/rabbitmq"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Ghost",
+			"description": "Free and open-source blogging platform",
+			"categories": ["blog"],
+			"note": "Access the blog management interface under <code>/ghost/</code>.",
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ghost.png",
+			"image": "ghost:latest",
+			"ports": ["2368/tcp"],
+			"volumes": [
+				{
+					"container": "/var/lib/ghost/content"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Joomla",
+			"description": "Another free and open-source CMS",
+			"categories": ["CMS"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/joomla.png",
+			"image": "joomla:latest",
+			"env": [
+				{
+					"name": "JOOMLA_DB_HOST",
+					"label": "MySQL database host",
+					"type": "container"
+				},
+				{
+					"name": "JOOMLA_DB_PASSWORD",
+					"label": "Database password"
+				}
+			],
+			"ports": ["80/tcp"],
+			"volumes": [
+				{
+					"container": "/var/www/html"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Drupal",
+			"description": "Open-source content management framework",
+			"categories": ["CMS"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/drupal.png",
+			"image": "drupal:latest",
+			"ports": ["80/tcp"],
+			"volumes": [
+				{
+					"container": "/var/www/html"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Plone",
+			"description": "A free and open-source CMS built on top of Zope",
+			"note": "Default user and password are admin/admin",
+			"categories": ["CMS"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/plone.png",
+			"image": "plone:latest",
+			"ports": ["8080/tcp"],
+			"volumes": [
+				{
+					"container": "/data"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Sematext Docker Agent",
+			"description": "Collect logs, metrics and docker events",
+			"categories": ["Log Management", "Monitoring"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/sematext_agent.png",
+			"image": "sematext/sematext-agent-docker:latest",
+			"name": "sematext-agent",
+			"privileged": true,
+			"env": [
+				{
+					"name": "LOGSENE_TOKEN",
+					"label": "Logs token"
+				},
+				{
+					"name": "SPM_TOKEN",
+					"label": "SPM monitoring token"
+				}
+			],
+			"volumes": [
+				{
+					"container": "/var/run/docker.sock",
+					"bind": "/var/run/docker.sock"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Datadog agent",
+			"description": "Collect events and metrics",
+			"categories": ["Monitoring"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/datadog_agent.png",
+			"image": "datadog/agent:latest",
+			"env": [
+				{
+					"name": "DD_API_KEY",
+					"label": "Datadog API key"
+				}
+			],
+			"volumes": [
+				{
+					"container": "/var/run/docker.sock",
+					"bind": "/var/run/docker.sock",
+					"readonly": true
+				},
+				{
+					"container": "/host/sys/fs/cgroup",
+					"bind": "/sys/fs/cgroup",
+					"readonly": true
+				},
+				{
+					"container": "/host/proc",
+					"bind": "/proc",
+					"readonly": true
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Mautic",
+			"description": "Open-source marketing automation platform",
+			"categories": ["marketing"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mautic.png",
+			"image": "mautic/mautic:latest",
+			"env": [
+				{
+					"name": "MAUTIC_DB_HOST",
+					"label": "MySQL database host",
+					"type": "container"
+				},
+				{
+					"name": "MAUTIC_DB_PASSWORD",
+					"label": "Database password"
+				}
+			],
+			"ports": ["80/tcp"],
+			"volumes": [
+				{
+					"container": "/var/www/html"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Jenkins",
+			"description": "Open-source continuous integration tool",
+			"categories": ["continuous-integration"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/jenkins.png",
+			"image": "jenkins/jenkins:lts-jdk11",
+			"ports": ["8080/tcp", "50000/tcp"],
+			"volumes": [
+				{
+					"container": "/var/jenkins_home"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Redmine",
+			"description": "Open-source project management tool",
+			"note": "Default user and password are admin/admin",
+			"categories": ["project-management"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redmine.png",
+			"image": "redmine:latest",
+			"ports": ["3000/tcp"],
+			"volumes": [
+				{
+					"container": "/usr/src/redmine/files"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "File browser",
+			"description": "A web file manager",
+			"note": "Default credentials: admin/admin",
+			"categories": ["filesystem", "storage"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/filebrowser.png",
+			"image": "filebrowser/filebrowser:latest",
+			"ports": ["80/tcp"],
+			"volumes": [
+				{
+					"container": "/data"
+				},
+				{
+					"container": "/srv"
+				}
+			],
+			"command": "--port 80 --database /data/database.db --root /srv"
+		},
+		{
+			"type": 1,
+			"title": "CommandBox",
+			"description": "ColdFusion (CFML) CLI",
+			"categories": ["development"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ortussolutions-commandbox.png",
+			"image": "ortussolutions/commandbox:latest",
+			"env": [
+				{
+					"name": "CFENGINE",
+					"default": "lucee@4.5",
+					"preset": true
+				}
+			],
+			"ports": ["8080/tcp", "8443/tcp"]
+		},
+		{
+			"type": 1,
+			"title": "ContentBox",
+			"description": "Open-source modular CMS",
+			"categories": ["CMS"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ortussolutions-contentbox.png",
+			"image": "ortussolutions/contentbox:latest",
+			"env": [
+				{
+					"name": "express",
+					"default": "true",
+					"preset": true
+				},
+				{
+					"name": "install",
+					"default": "true",
+					"preset": true
+				},
+				{
+					"name": "CFENGINE",
+					"default": "lucee@4.5",
+					"preset": true
+				}
+			],
+			"ports": ["8080/tcp", "8443/tcp"],
+			"volumes": [
+				{
+					"container": "/data/contentbox/db"
+				},
+				{
+					"container": "/app/includes/shared/media"
+				}
+			]
+		},
+		{
+			"type": 1,
+			"title": "Dokku",
+			"description": "Dokku setup as a container",
+			"categories": ["PaaS"],
+			"platform": "linux",
+			"logo": "",
+			"image":"dokku/dokku",
+			"ports": ["22/tcp", "80/tcp", "443/tcp"],
+			"volumes": [{
+				"container": "/mnt/dokku",
+				"bind": "/var/lib/dokku"
+			},
+			{
+				"container": "/var/run/docker.sock",
+				"bind": "/var/run/docker.sock"
+			}],
+			"env":[
+				{
+					"name": "DOKKU_HOSTNAME",
+					"label": "Dokku hostname",
+					"description": "Global hostname to be registered by Dokku"
+				},
+				{
+					"name": "DOKKU_HOST_ROOT",
+					"label": "Dokku host root",
+					"default": "/var/lib/dokku/home/dokku",
+					"description": "Image build cache path. Generally set to <data dir> + '/home/dokku'"
+				}
+			]
+		},
+		{
+			"type": 2,
+			"title": "Portainer Agent",
+			"description": "Manage all the resources in your Swarm cluster",
+			"note": "The agent will be deployed globally inside your cluster and available on port 9001.",
+			"categories": ["portainer"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/portainer.png",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/portainer-agent/docker-stack.yml"
+			}
+		},
+		{
+			"type": 2,
+			"title": "OpenFaaS",
+			"name": "func",
+			"description": "Serverless functions made simple",
+			"note": "Deploys the API gateway and sample functions. You can access the UI on port 8080. <b>Warning</b>: the name of the stack must be 'func'.",
+			"categories": ["serverless"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/openfaas.png",
+			"repository": {
+				"url": "https://github.com/openfaas/faas",
+				"stackfile": "docker-compose.yml"
+			}
+		},
+		{
+			"type": 2,
+			"title": "IronFunctions",
+			"description": "Open-source serverless computing platform",
+			"note": "Deploys the IronFunctions API and UI.",
+			"categories": ["serverless"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ironfunctions.png",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/ironfunctions/docker-stack.yml"
+			}
+		},
+		{
+			"type": 2,
+			"title": "CockroachDB",
+			"description": "CockroachDB cluster",
+			"note": "Deploys an insecure CockroachDB cluster, please refer to <a href=\"https://www.cockroachlabs.com/docs/stable/orchestrate-cockroachdb-with-docker-swarm.html\" target=\"_blank\">CockroachDB documentation</a> for production deployments.",
+			"categories": ["database"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cockroachdb.png",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/cockroachdb/docker-stack.yml"
+			}
+		},
+		{
+			"type": 2,
+			"title": "WordPress",
+			"description": "WordPress setup with a MySQL database",
+			"note": "Deploys a WordPress instance connected to a MySQL database.",
+			"categories": ["CMS"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/wordpress/docker-stack.yml"
+			},
+			"env": [
+				{
+					"name": "MYSQL_DATABASE_PASSWORD",
+					"label": "Database root password",
+					"description": "Password used by the MySQL root user."
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "WordPress",
+			"description": "WordPress setup with a MySQL database",
+			"note": "Deploys a WordPress instance connected to a MySQL database.",
+			"categories": ["CMS"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/wordpress/docker-compose.yml"
+			},
+			"env": [
+				{
+					"name": "MYSQL_DATABASE_PASSWORD",
+					"label": "Database root password",
+					"description": "Password used by the MySQL root user."
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "OpenAMT",
+			"description": "OpenAMT Cloud Toolkit",
+			"note": "MPS password needs to be 8-32 characters including one uppercase, one lowercase letters, one base-10 digit and one special character.",
+			"categories": ["Cloud"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/intel.png",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/openamt/docker-compose.yml"
+			},
+			"env": [
+				{
+					"name": "POSTGRES_USER",
+					"label": "Database user"
+				},
+				{
+					"name": "POSTGRES_PASSWORD",
+					"label": "Database password"
+				},
+				{
+					"name": "MPS_USER",
+					"label": "MPS user"
+				},
+				{
+					"name": "MPS_PASSWORD",
+					"label": "MPS password"
+				},
+				{
+					"name": "MPS_COMMON_NAME",
+					"label": "MPS URL",
+					"description": "Used to connect to the MPS API."
+				},
+				{
+					"name": "MPS_SECRET",
+					"label": "MPS Secret",
+					"description": "Strong secret key used to log into MPS."
+				},
+				{
+					"name": "VAULT_SECRET",
+					"label": "Vault secret",
+					"description": "Secret token used to log into Vault (don't include '.' character)."
+				}
+			]
+		},
+		{
+			"type": 2,
+			"title": "Microsoft OMS Agent",
+			"description": "Microsoft Operations Management Suite Linux agent.",
+			"categories": ["OPS"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/microsoft-oms/docker-stack.yml"
+			},
+			"env": [
+				{
+					"name": "AZURE_WORKSPACE_ID",
+					"label": "Workspace ID",
+					"description": "Azure Workspace ID"
+				},
+				{
+					"name": "AZURE_PRIMARY_KEY",
+					"label": "Primary key",
+					"description": "Azure primary key"
+				}
+			]
+		},
+		{
+			"title": "Sematext Docker Agent",
+			"type": 2,
+			"categories": ["Log Management", "Monitoring"],
+			"description": "Collect logs, metrics and docker events",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/sematext_agent.png",
+			"platform": "linux",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/sematext-agent-docker/docker-stack.yml"
+			},
+			"env": [
+				{
+					"name": "LOGSENE_TOKEN",
+					"label": "Logs token"
+				},
+				{
+					"name": "SPM_TOKEN",
+					"label": "SPM monitoring token"
+				}
+			]
+		},
+		{
+			"title": "Datadog agent",
+			"type": 2,
+			"categories": ["Monitoring"],
+			"description": "Collect events and metrics",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/datadog_agent.png",
+			"platform": "linux",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/datadog-agent/docker-stack.yml"
+			},
+			"env": [
+				{
+					"name": "API_KEY",
+					"label": "Datadog API key"
+				}
+			]
+		},
+		{
+			"type": 4,
+			"title": "Wordpress",
+			"description": "Wordpress setup with a MySQL database",
+			"note": "Deploys a Wordpress instance connected to a MySQL database.",
+			"stackfile": "https://raw.githubusercontent.com/portainer/templates/master/stacks/wordpress/edge/docker-stack.yml"
+		},
+		{
+			"type": 4,
+			"title": "CockroachDB",
+			"description": "CockroachDB cluster",
+			"note": "Deploys an insecure CockroachDB cluster, please refer to <a href=\"https://www.cockroachlabs.com/docs/stable/orchestrate-cockroachdb-with-docker-swarm.html\" target=\"_blank\">CockroachDB documentation</a> for production deployments.",
+			"stackfile": "https://raw.githubusercontent.com/portainer/templates/master/stacks/cockroachdb/edge/docker-stack.yml"
+		},
+		{
+			"type": 3,
+			"title": "FDO",
+			"description": "FDO",
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/intel.png",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/fdo/docker-stack.yml"
+			},
+			"env": [
+				{
+					"name": "owner_api_user",
+					"label": "API Username"
+				},
+				{
+					"name": "owner_api_password",
+					"label": "API Password"
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "Dokku",
+			"description": "Dokku setup as a compose file",
+			"categories": ["PaaS"],
+			"platform": "linux",
+			"logo": "",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/dokku/docker-compose.yml"
+			},
+			"env": [
+				{
+					"name": "VERSION",
+					"label": "Dokku version",
+					"description": "Version of Dokku to use ('latest' if empty)",
+					"default": "latest"
+				},
+				{
+					"name": "DOKKU_HOSTNAME",
+					"label": "Dokku hostname",
+					"description": "Global hostname to be registered by Dokku"
+				},
+				{
+					"name": "VOLUME_PATH",
+					"label": "Dokku volume path",
+					"description": "Host path to be bound to /mnt/dokku (`/var/lib/dokku` if empty)",
+					"default": "/var/lib/dokku"
+				},
+				{
+					"name": "DOKKU_HOST_ROOT",
+					"label": "Dokku host root",
+					"description": "Image build cache path. Generally set to <data dir> + '/home/dokku'",
+					"default": "/var/lib/dokku/home/dokku"
+				},
+				{
+					"name": "SSH_PORT",
+					"label": "SSH port",
+					"description": "Host port to expose SSH port of Dokku (22 if empty)",
+					"default": "22"
+				},
+				{
+					"name": "HTTP_PORT",
+					"label": "HTTP port",
+					"description": "Host port to expose HTTP port of Dokku (80 if empty)",
+					"default": "80"
+				},
+				{
+					"name": "HTTPS_PORT",
+					"label": "HTTPS port",
+					"description": "Host port to expose HTTPS port of Dokku (443 if empty)",
+					"default": "443"
+				}
+			]
+		},
+		{
+			"categories": [
+				"Monitoring",
+				"Analytics",
+				"Tools"
+			],
+			"description": "Umami - Simple, fast, privacy-focused alternative to Google Analytics with customizable dashboard and real-time insights.",
+			"env": [
+				{
+					"default": "3000",
+					"label": "UMAMI_PORT",
+					"name": "UMAMI_PORT",
+					"description": "Custom port for Umami web interface"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/Umami",
+					"label": "CONFIG_PATH",
+					"name": "CONFIG_PATH",
+					"description": "Custom path for Umami configuration"
+				},
+				{
+					"default": "umami_secret_key_change_me",
+					"label": "HASH_SALT",
+					"name": "HASH_SALT",
+					"description": "Secret key for hashing (change this!)"
+				},
+				{
+					"default": "postgresql://umami:umami@postgres:5432/umami",
+					"label": "DATABASE_URL",
+					"name": "DATABASE_URL",
+					"description": "Database connection string"
+				}
+			],
+			"image": "ghcr.io/umami-software/umami:postgresql-latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/umami.png",
+			"name": "umami",
+			"platform": "linux",
+			"ports": [
+				"${UMAMI_PORT}:3000/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Umami Analytics",
+			"type": 1,
+			"note": "<h3>Umami Privacy-Focused Analytics</h3><b>Access:</b> Navigate to http://your-ip:${UMAMI_PORT} to access Umami.<br><br><b>Setup:</b> Default login is admin/umami. Change this immediately after first login.<br><br><b>Features:</b> Privacy-focused, GDPR compliant, lightweight alternative to Google Analytics.<br><br><b>Official Documentation: </b><a href=\"https://umami.is/docs\" target=\"_blank\">Umami Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Automation",
+				"IoT",
+				"Smart Home"
+			],
+			"description": "Node-RED - Flow-based programming for the Internet of Things with visual editor and extensive library of nodes.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID",
+					"description": "User ID for file permissions"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID",
+					"description": "Group ID for file permissions"
+				},
+				{
+					"default": "America/New_York",
+					"label": "TZ",
+					"name": "TZ",
+					"description": "Timezone"
+				},
+				{
+					"default": "1880",
+					"label": "NODERED_PORT",
+					"name": "NODERED_PORT",
+					"description": "Custom port for Node-RED web interface"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/NodeRED",
+					"label": "DATA_PATH",
+					"name": "DATA_PATH",
+					"description": "Custom path for Node-RED data and flows"
+				}
+			],
+			"image": "nodered/node-red:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/node-red.png",
+			"name": "node-red-enhanced",
+			"platform": "linux",
+			"ports": [
+				"${NODERED_PORT}:1880/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Node-RED (Enhanced)",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${DATA_PATH}",
+					"container": "/data"
+				}
+			],
+			"note": "<h3>Node-RED Flow Programming</h3><b>Access:</b> Navigate to http://your-ip:${NODERED_PORT} to access Node-RED.<br><br><b>Features:</b> Visual programming, IoT integration, automation flows, and extensive node library.<br><br><b>Security:</b> Consider enabling authentication in production environments.<br><br><b>Official Documentation: </b><a href=\"https://nodered.org/docs/\" target=\"_blank\">Node-RED Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Monitoring",
+				"Dashboards",
+				"Analytics"
+			],
+			"description": "Grafana - Open source analytics and interactive visualization web application with support for multiple data sources.",
+			"env": [
+				{
+					"default": "472",
+					"label": "GF_SECURITY_ADMIN_USER",
+					"name": "GF_SECURITY_ADMIN_USER",
+					"description": "Admin username for Grafana"
+				},
+				{
+					"default": "changeme123",
+					"label": "GF_SECURITY_ADMIN_PASSWORD", 
+					"name": "GF_SECURITY_ADMIN_PASSWORD",
+					"description": "Admin password for Grafana"
+				},
+				{
+					"default": "3000",
+					"label": "GRAFANA_PORT",
+					"name": "GRAFANA_PORT",
+					"description": "Custom port for Grafana web interface"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/Grafana",
+					"label": "DATA_PATH",
+					"name": "DATA_PATH",
+					"description": "Custom path for Grafana data storage"
+				},
+				{
+					"default": "America/New_York",
+					"label": "TZ",
+					"name": "TZ",
+					"description": "Timezone"
+				}
+			],
+			"image": "grafana/grafana:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/grafana.png",
+			"name": "grafana-enhanced",
+			"platform": "linux",
+			"ports": [
+				"${GRAFANA_PORT}:3000/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Grafana (Enhanced)",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${DATA_PATH}",
+					"container": "/var/lib/grafana"
+				}
+			],
+			"note": "<h3>Grafana Analytics Platform</h3><b>Access:</b> Navigate to http://your-ip:${GRAFANA_PORT} to access Grafana.<br><br><b>Login:</b> Use the admin credentials you configured above.<br><br><b>Features:</b> Beautiful dashboards, alerting, data source plugins, and team collaboration.<br><br><b>Official Documentation: </b><a href=\"https://grafana.com/docs/\" target=\"_blank\">Grafana Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Monitoring",
+				"Metrics",
+				"Time Series"
+			],
+			"description": "Prometheus - Open-source monitoring system with dimensional data model and flexible query language.",
+			"env": [
+				{
+					"default": "9090",
+					"label": "PROMETHEUS_PORT",
+					"name": "PROMETHEUS_PORT",
+					"description": "Custom port for Prometheus web interface"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/Prometheus",
+					"label": "CONFIG_PATH",
+					"name": "CONFIG_PATH",
+					"description": "Custom path for Prometheus configuration"
+				},
+				{
+					"default": "/portainer/Files/AppData/Data/Prometheus",
+					"label": "DATA_PATH",
+					"name": "DATA_PATH",
+					"description": "Custom path for Prometheus data storage"
+				},
+				{
+					"default": "15d",
+					"label": "RETENTION_TIME",
+					"name": "RETENTION_TIME",
+					"description": "Data retention time (e.g., 15d, 30d, 1y)"
+				}
+			],
+			"image": "prom/prometheus:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/prometheus.png",
+			"name": "prometheus-enhanced",
+			"platform": "linux",
+			"ports": [
+				"${PROMETHEUS_PORT}:9090/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Prometheus (Enhanced)",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${CONFIG_PATH}",
+					"container": "/etc/prometheus"
+				},
+				{
+					"bind": "${DATA_PATH}",
+					"container": "/prometheus"
+				}
+			],
+			"command": "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.console.libraries=/etc/prometheus/console_libraries --web.console.templates=/etc/prometheus/consoles --storage.tsdb.retention.time=${RETENTION_TIME} --web.enable-lifecycle",
+			"note": "<h3>Prometheus Monitoring System</h3><b>Access:</b> Navigate to http://your-ip:${PROMETHEUS_PORT} to access Prometheus.<br><br><b>Setup:</b> Configure targets in prometheus.yml file in the config directory.<br><br><b>Features:</b> Time series database, powerful queries, alerting, and service discovery.<br><br><b>Official Documentation: </b><a href=\"https://prometheus.io/docs/\" target=\"_blank\">Prometheus Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Media",
+				"Streaming",
+				"Music"
+			],
+			"description": "Navidrome - Modern Music Server and Streamer compatible with Subsonic/Airsonic clients with web interface.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID",
+					"description": "User ID for file permissions"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID",
+					"description": "Group ID for file permissions"
+				},
+				{
+					"default": "4533",
+					"label": "NAVIDROME_PORT",
+					"name": "NAVIDROME_PORT",
+					"description": "Custom port for Navidrome web interface"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/Navidrome",
+					"label": "CONFIG_PATH",
+					"name": "CONFIG_PATH",
+					"description": "Custom path for Navidrome configuration"
+				},
+				{
+					"default": "/portainer/Media/Music",
+					"label": "MUSIC_PATH",
+					"name": "MUSIC_PATH",
+					"description": "Custom path for music library"
+				},
+				{
+					"default": "admin",
+					"label": "ND_LOGLEVEL",
+					"name": "ND_LOGLEVEL",
+					"description": "Log level (error, warn, info, debug, trace)"
+				}
+			],
+			"image": "deluan/navidrome:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/navidrome.png",
+			"name": "navidrome",
+			"platform": "linux",
+			"ports": [
+				"${NAVIDROME_PORT}:4533/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Navidrome Music Server",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${CONFIG_PATH}",
+					"container": "/data"
+				},
+				{
+					"bind": "${MUSIC_PATH}",
+					"container": "/music",
+					"readonly": true
+				}
+			],
+			"note": "<h3>Navidrome Music Server</h3><b>Access:</b> Navigate to http://your-ip:${NAVIDROME_PORT} to access Navidrome.<br><br><b>Setup:</b> Create an admin account on first access.<br><br><b>Compatible:</b> Works with Subsonic/Airsonic clients and supports modern web interface.<br><br><b>Official Documentation: </b><a href=\"https://www.navidrome.org/docs/\" target=\"_blank\">Navidrome Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Network",
+				"VPN",
+				"Remote Access"
+			],
+			"description": "Tailscale - Zero config VPN with mesh networking, MagicDNS, and easy device management.",
+			"env": [
+				{
+					"default": "your_auth_key_here",
+					"label": "TS_AUTHKEY",
+					"name": "TS_AUTHKEY",
+					"description": "Tailscale Auth Key (get from https://login.tailscale.com/admin/settings/keys)"
+				},
+				{
+					"default": "docker-container",
+					"label": "TS_HOSTNAME",
+					"name": "TS_HOSTNAME",
+					"description": "Hostname for this Tailscale node"
+				},
+				{
+					"default": "false",
+					"label": "TS_ACCEPT_DNS",
+					"name": "TS_ACCEPT_DNS",
+					"description": "Accept DNS configuration from the admin panel"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/Tailscale",
+					"label": "CONFIG_PATH",
+					"name": "CONFIG_PATH",
+					"description": "Custom path for Tailscale state and configuration"
+				}
+			],
+			"image": "tailscale/tailscale:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/tailscale.png",
+			"name": "tailscale",
+			"platform": "linux",
+			"restart_policy": "unless-stopped",
+			"title": "Tailscale VPN",
+			"type": 1,
+			"privileged": true,
+			"network_mode": "host",
+			"volumes": [
+				{
+					"bind": "${CONFIG_PATH}",
+					"container": "/var/lib/tailscale"
+				},
+				{
+					"bind": "/dev/net/tun",
+					"container": "/dev/net/tun"
+				}
+			],
+			"note": "<h3>Tailscale Zero Config VPN</h3><b>Setup:</b> Get an auth key from <a href=\"https://login.tailscale.com/admin/settings/keys\" target=\"_blank\">Tailscale Admin</a> and configure it above.<br><br><b>Features:</b> Mesh networking, MagicDNS, NAT traversal, and secure connections.<br><br><b>Management:</b> Manage devices through the Tailscale admin console.<br><br><b>Official Documentation: </b><a href=\"https://tailscale.com/kb/\" target=\"_blank\">Tailscale Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Code Editor",
+				"Development",
+				"IDE"
+			],
+			"description": "Code-server - VS Code in the browser with extensions, themes, and full development environment.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID",
+					"description": "User ID for file permissions"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID",
+					"description": "Group ID for file permissions"
+				},
+				{
+					"default": "America/New_York",
+					"label": "TZ",
+					"name": "TZ",
+					"description": "Timezone"
+				},
+				{
+					"default": "8443",
+					"label": "CODE_SERVER_PORT",
+					"name": "CODE_SERVER_PORT",
+					"description": "Custom port for Code-server web interface"
+				},
+				{
+					"default": "changeme123",
+					"label": "PASSWORD",
+					"name": "PASSWORD",
+					"description": "Password for Code-server access"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/Code-Server",
+					"label": "CONFIG_PATH",
+					"name": "CONFIG_PATH",
+					"description": "Custom path for Code-server configuration"
+				},
+				{
+					"default": "/portainer/Files/Projects",
+					"label": "WORKSPACE_PATH",
+					"name": "WORKSPACE_PATH",
+					"description": "Custom path for workspace/project files"
+				}
+			],
+			"image": "linuxserver/code-server:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/code-server.png",
+			"name": "code-server-enhanced",
+			"platform": "linux",
+			"ports": [
+				"${CODE_SERVER_PORT}:8443/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Code-server (Enhanced)",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${CONFIG_PATH}",
+					"container": "/config"
+				},
+				{
+					"bind": "${WORKSPACE_PATH}",
+					"container": "/workspace"
+				}
+			],
+			"note": "<h3>VS Code in Browser</h3><b>Access:</b> Navigate to http://your-ip:${CODE_SERVER_PORT} to access Code-server.<br><br><b>Login:</b> Use the password you configured above.<br><br><b>Features:</b> Full VS Code experience with extensions, integrated terminal, and Git support.<br><br><b>Official Documentation: </b><a href=\"https://docs.linuxserver.io/images/docker-code-server\" target=\"_blank\">Code-server Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Network",
+				"Monitoring",
+				"Speed Test"
+			],
+			"description": "LibreSpeed - Self-hosted speedtest with HTML5, no Flash, responsive design and detailed statistics.",
+			"env": [
+				{
+					"default": "1000",
+					"label": "PUID",
+					"name": "PUID",
+					"description": "User ID for file permissions"
+				},
+				{
+					"default": "1000",
+					"label": "PGID",
+					"name": "PGID",
+					"description": "Group ID for file permissions"
+				},
+				{
+					"default": "80",
+					"label": "LIBRESPEED_PORT",
+					"name": "LIBRESPEED_PORT",
+					"description": "Custom port for LibreSpeed web interface"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/LibreSpeed",
+					"label": "CONFIG_PATH",
+					"name": "CONFIG_PATH",
+					"description": "Custom path for LibreSpeed configuration"
+				},
+				{
+					"default": "true",
+					"label": "ENABLE_ID_OBFUSCATION",
+					"name": "ENABLE_ID_OBFUSCATION",
+					"description": "Enable result ID obfuscation for privacy"
+				}
+			],
+			"image": "linuxserver/librespeed:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/speedtest.png",
+			"name": "librespeed-enhanced",
+			"platform": "linux",
+			"ports": [
+				"${LIBRESPEED_PORT}:80/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "LibreSpeed (Enhanced)",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${CONFIG_PATH}",
+					"container": "/config"
+				}
+			],
+			"note": "<h3>Self-hosted Speed Test</h3><b>Access:</b> Navigate to http://your-ip:${LIBRESPEED_PORT} to run speed tests.<br><br><b>Features:</b> No Flash required, works on mobile devices, detailed statistics and history.<br><br><b>Privacy:</b> All data stays on your server, no external dependencies.<br><br><b>Official Documentation: </b><a href=\"https://github.com/librespeed/speedtest\" target=\"_blank\">LibreSpeed Documentation</a><br><br>"
+		},
+		{
+			"categories": [
+				"Other",
+				"Tools",
+				"Password Manager"
+			],
+			"description": "Bitwarden/Vaultwarden - Lightweight Bitwarden server implementation with full API compatibility.",
+			"env": [
+				{
+					"default": "8080",
+					"label": "WEB_PORT",
+					"name": "WEB_PORT",
+					"description": "Custom port for web vault interface"
+				},
+				{
+					"default": "/portainer/Files/AppData/Config/Vaultwarden",
+					"label": "DATA_PATH",
+					"name": "DATA_PATH",
+					"description": "Custom path for Vaultwarden data"
+				},
+				{
+					"default": "true",
+					"label": "SIGNUPS_ALLOWED",
+					"name": "SIGNUPS_ALLOWED",
+					"description": "Allow new user registrations"
+				},
+				{
+					"default": "",
+					"label": "ADMIN_TOKEN",
+					"name": "ADMIN_TOKEN",
+					"description": "Admin token for admin panel (generate secure token)"
+				},
+				{
+					"default": "smtp.gmail.com",
+					"label": "SMTP_HOST",
+					"name": "SMTP_HOST",
+					"description": "SMTP server hostname"
+				},
+				{
+					"default": "587",
+					"label": "SMTP_PORT",
+					"name": "SMTP_PORT",
+					"description": "SMTP server port"
+				},
+				{
+					"default": "starttls",
+					"label": "SMTP_SECURITY",
+					"name": "SMTP_SECURITY",
+					"description": "SMTP security (starttls/force_tls/off)"
+				},
+				{
+					"default": "",
+					"label": "SMTP_USERNAME",
+					"name": "SMTP_USERNAME",
+					"description": "SMTP username (optional)"
+				},
+				{
+					"default": "",
+					"label": "SMTP_PASSWORD",
+					"name": "SMTP_PASSWORD",
+					"description": "SMTP password (optional)"
+				}
+			],
+			"image": "vaultwarden/server:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/bitwarden.png",
+			"name": "vaultwarden-complete",
+			"platform": "linux",
+			"ports": [
+				"${WEB_PORT}:80/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Vaultwarden (Complete)",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "${DATA_PATH}",
+					"container": "/data"
+				}
+			],
+			"note": "<h3>Complete Vaultwarden Setup</h3><b>Access:</b> Navigate to http://your-ip:${WEB_PORT} to access your vault.<br><br><b>Admin Panel:</b> Access admin panel at /admin if ADMIN_TOKEN is configured.<br><br><b>Apps:</b> Use official Bitwarden apps and browser extensions with your server URL.<br><br><b>Official Documentation: </b><a href=\"https://github.com/dani-garcia/vaultwarden/wiki\" target=\"_blank\">Vaultwarden Wiki</a><br><br>"
+		}
+	]
+}
