@@ -65,7 +65,7 @@
 				}
 			],
 			"image": "seafileltd/seafile-mc:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/seafile.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/seafile.png",
 			"name": "seafile",
 			"platform": "linux",
 			"ports": [
@@ -150,7 +150,7 @@
 				}
 			],
 			"image": "owncloud/server:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/owncloud.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/owncloud.png",
 			"name": "owncloud-community",
 			"platform": "linux",
 			"ports": [
@@ -223,7 +223,7 @@
 				}
 			],
 			"image": "owncloud/ocis:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/ocis.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/owncloud.png",
 			"name": "owncloud-ocis",
 			"platform": "linux",
 			"ports": [
@@ -403,7 +403,7 @@
 				}
 			],
 			"image": "linuxserver/krusader:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/krusader.png",
+			"logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/krusader-logo.png",
 			"name": "krusader",
 			"platform": "linux",
 			"ports": [
@@ -446,7 +446,7 @@
 				}
 			],
 			"image": "${ADMINER_VERSION}",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/adminer.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/adminer.png",
 			"name": "adminer",
 			"platform": "linux",
 			"ports": [
@@ -491,7 +491,7 @@
 				}
 			],
 			"image": "restic/rest-server:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/restic.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/restic.png",
 			"name": "restic-server",
 			"platform": "linux",
 			"ports": [
@@ -525,7 +525,7 @@
 				}
 			],
 			"image": "nicolargo/glances:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/glances.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/glances.png",
 			"name": "glances",
 			"platform": "linux",
 			"ports": [
@@ -607,7 +607,7 @@
 				}
 			],
 			"image": "gitea/gitea:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/gitea.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/gitea.png",
 			"name": "gitea",
 			"platform": "linux",
 			"ports": [
@@ -663,7 +663,7 @@
 				}
 			],
 			"image": "vectorim/element-web:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/element.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/element.png",
 			"name": "element-web",
 			"platform": "linux",
 			"ports": [
@@ -1993,7 +1993,7 @@
 			"description": "Dokku setup as a container",
 			"categories": ["PaaS"],
 			"platform": "linux",
-			"logo": "",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/dokku.png",
 			"image":"dokku/dokku",
 			"ports": ["22/tcp", "80/tcp", "443/tcp"],
 			"volumes": [{
@@ -2262,7 +2262,7 @@
 			"description": "Dokku setup as a compose file",
 			"categories": ["PaaS"],
 			"platform": "linux",
-			"logo": "",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/dokku.png",
 			"repository": {
 				"url": "https://github.com/portainer/templates",
 				"stackfile": "stacks/dokku/docker-compose.yml"
@@ -2345,7 +2345,7 @@
 				}
 			],
 			"image": "ghcr.io/umami-software/umami:postgresql-latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/umami.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/umami.png",
 			"name": "umami",
 			"platform": "linux",
 			"ports": [
@@ -2396,7 +2396,7 @@
 				}
 			],
 			"image": "nodered/node-red:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/node-red.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/node-red.png",
 			"name": "node-red-enhanced",
 			"platform": "linux",
 			"ports": [
@@ -2453,7 +2453,7 @@
 				}
 			],
 			"image": "grafana/grafana:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/grafana.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/grafana.png",
 			"name": "grafana-enhanced",
 			"platform": "linux",
 			"ports": [
@@ -2504,7 +2504,7 @@
 				}
 			],
 			"image": "prom/prometheus:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/prometheus.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/prometheus.png",
 			"name": "prometheus-enhanced",
 			"platform": "linux",
 			"ports": [
@@ -2572,7 +2572,7 @@
 				}
 			],
 			"image": "deluan/navidrome:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/navidrome.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/navidrome.png",
 			"name": "navidrome",
 			"platform": "linux",
 			"ports": [
@@ -2628,7 +2628,7 @@
 				}
 			],
 			"image": "tailscale/tailscale:latest",
-			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/tailscale.png",
+			"logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
 			"name": "tailscale",
 			"platform": "linux",
 			"restart_policy": "unless-stopped",
